@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,165 +19,98 @@ class MyApp extends StatelessWidget {
             style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
+        body: const Padding(
+          padding: EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromRGBO(229, 236, 243, 1),
-                  border:
-                      Border.all(color: const Color.fromRGBO(229, 236, 243, 1)),
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                padding: const EdgeInsets.all(10.0),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'First name:',
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                    SizedBox(width: 10.0),
-                    Text(
-                      'Judy',
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromRGBO(229, 236, 243, 1),
-                  border:
-                      Border.all(color: const Color.fromRGBO(229, 236, 243, 1)),
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                padding: const EdgeInsets.all(10.0),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      'Last name:',
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                    SizedBox(width: 10.0),
-                    Text(
-                      'Smith',
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromRGBO(229, 236, 243, 1),
-                  border:
-                      Border.all(color: const Color.fromRGBO(229, 236, 243, 1)),
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                padding: const EdgeInsets.all(10.0),
-                child: const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Email:',
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                    SizedBox(width: 10.0),
-                    Text(
-                      'judy.mobbin@gmail.com',
-                      style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10.0),
-              const Text(
+              InfoRow(label: 'First name', value: 'Judy'),
+              InfoRow(label: 'Last name', value: 'Smith'),
+              InfoRow(label: 'Email', value: 'judy.mobbin@gmail.com'),
+              SizedBox(height: 10.0),
+              Text(
                 'Account',
                 style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
-              const SizedBox(height: 20.0),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(229, 236, 243, 1),
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    padding: const EdgeInsets.all(10.0),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Change password',
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                        SizedBox(width: 5.0),
-                        Icon(Icons.arrow_forward),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 10.0),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(229, 236, 243, 1),
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    padding: const EdgeInsets.all(10.0),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Sign out',
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                        SizedBox(width: 5.0),
-                        Icon(Icons.power_off_outlined),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 30.0),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: const Color.fromRGBO(229, 236, 243, 1),
-                      borderRadius: BorderRadius.circular(5.0),
-                    ),
-                    padding: const EdgeInsets.all(10.0),
-                    child: const Row(
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Delete my account',
-                                  style: TextStyle(fontSize: 20.0),
-                                ),
-                                SizedBox(width: 5.0),
-                                Icon(Icons.arrow_forward),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              SizedBox(height: 20.0),
+              ActionRow(label: 'Change password', icon: Icons.arrow_forward),
+              ActionRow(label: 'Sign out', icon: Icons.power_off_outlined),
+              SizedBox(height: 30.0),
+              ActionRow(label: 'Delete my account', icon: Icons.arrow_forward),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class InfoRow extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const InfoRow({
+    super.key,
+    required this.label,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(229, 236, 243, 1),
+        border: Border.all(color: const Color.fromRGBO(229, 236, 243, 1)),
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      padding: const EdgeInsets.all(10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(fontSize: 20.0),
+          ),
+          const SizedBox(width: 10.0),
+          Text(
+            value,
+            style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ActionRow extends StatelessWidget {
+  final String label;
+  final IconData icon;
+
+  const ActionRow({
+    super.key,
+    required this.label,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(229, 236, 243, 1),
+        borderRadius: BorderRadius.circular(5.0),
+      ),
+      padding: const EdgeInsets.all(10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(fontSize: 20.0),
+          ),
+          const SizedBox(width: 5.0),
+          Icon(icon),
+        ],
       ),
     );
   }
