@@ -46,6 +46,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// InfoRow : 정보를 표시하는 역할
+// 이 위젯은 라벨과 해당 정보를 표시하는 두 개의 텍스트를 가로로 배열해서 보여줌
+// 이 정보는 사용자의 계정에 관련된 정보임
 class InfoRow extends StatelessWidget {
   final String label;
   final String value;
@@ -83,6 +86,9 @@ class InfoRow extends StatelessWidget {
   }
 }
 
+// ActionRow : 동작을 수행하는 역할을 함
+// 이 위젯은 라벨과 해당 동작을 나타내는 아이콘을 가로로 배열하여 보여줌
+// 이 동작은 사용자가 프로필 관리를 위해 수행하는 작업임
 class ActionRow extends StatelessWidget {
   final String label;
   final IconData icon;
