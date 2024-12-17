@@ -17,8 +17,7 @@
 - **Programming Language**: Dart
 - **Framework**: Flutter
 - **Development Tools**: Visual Studio Code, Android Studio
-- **Version Control**: Git
-
+- 
 ---
 
 ## 🔧 Installation and Usage
